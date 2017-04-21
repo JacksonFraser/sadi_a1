@@ -23,6 +23,7 @@ public class Client
 
 	public static void main(String args[])
 	{
+		new AppFrame();
 		final GameEngine gameEngine = new GameEngineImpl();
 
 		// create two test players
@@ -56,6 +57,6 @@ public class Client
 	private static void printCards(Deque<PlayingCard> deck)
 	{
 		for (PlayingCard card : deck)
-			logger.log(Level.INFO, card.toString());
+			logger.log(Level.INFO,card.toString());
 	}
 }
