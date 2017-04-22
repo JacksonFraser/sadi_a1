@@ -1,14 +1,11 @@
 package view;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JToolBar;
 
-import controller.AddPlayerController;
+import controller.AddPlayerFrameController;
 import controller.DealController;
-import controller.PlaceBetController;
 
 public class ToolBar extends JToolBar {
 
@@ -23,7 +20,7 @@ public class ToolBar extends JToolBar {
 		startButton.addActionListener(new DealController());
 		add(betButton);
 		add(addPlayerButton);
-		addPlayerButton.addActionListener(new AddPlayerController());
+		addPlayerButton.addActionListener(new AddPlayerFrameController());
 
 	}
 }

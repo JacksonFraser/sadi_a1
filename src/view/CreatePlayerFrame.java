@@ -13,45 +13,56 @@ import javax.swing.JTextField;
 import controller.AddPlayerController;
 
 public class CreatePlayerFrame extends JFrame {
-	
-	private Integer[] points ={400,600,800,1000};
-	private JComboBox<Integer> cBox = new JComboBox<>(points);
-	private JPanel panel = createPanel(cBox);
-	private JButton btn = new JButton("Create");
-	
+
+	private JComboBox<Integer> cBox;
+	private JPanel panel;
+	private JTextField name;
+
 	public CreatePlayerFrame() {
 		super("Create Player");
 		setLayout(new BorderLayout());
-		setVisible(true);
 		setBounds(200, 150, 400, 200);
-		add(panel);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-	}
-	private JPanel createPanel(JComboBox<Integer> cBox) {
-		JPanel panel = new JPanel();
-		
+		panel = new JPanel();
 		panel.setLayout(null);
-		
+		setContentPane(panel);
+
 		JLabel pName = new JLabel("Player Name");
 		pName.setBounds(10, 10, 150, 25);
 		panel.add(pName);
-		
-		JTextField pNameInput = new JTextField(20);
-		pNameInput.setBounds(200, 10, 160, 25);
-		panel.add(pNameInput);
-		
+
+		name = new JTextField(20);
+		name.setBounds(200, 10, 160, 25);
+		panel.add(name);
+
 		JLabel pPoints = new JLabel("Choose Points");
 		pPoints.setBounds(10, 40, 150, 25);
 		panel.add(pPoints);
-		
+
+		cBox = new JComboBox<>();
+		cBox.addItem(400);
+		cBox.addItem(600);
+		cBox.addItem(800);
+		cBox.addItem(1000);
+
 		cBox.setBounds(200, 40, 160, 25);
 		panel.add(cBox);
-		
+
 		JButton createBtn = new JButton("Create");
 		createBtn.setBounds(10, 80, 150, 25);
 		panel.add(createBtn);
-		createBtn.addActionListener(new AddPlayerController() );
-		return panel;
+		createBtn.addActionListener(new AddPlayerController(this));
+		setVisible(true);
+	}
+
+
+	public String getName() {
+		return this.name.getText();
+	}
+
+	public int getPoints() {
+		int points = Integer.parseInt(cBox.getSelectedItem().toString());
+		return points;
 	}
 
 }
