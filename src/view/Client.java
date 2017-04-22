@@ -4,7 +4,7 @@ import java.util.Deque;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import model.GameEngineCallbackImpl;
+import model.ConsoleGameEngineCallbackImpl;
 import model.GameEngineImpl;
 import model.SimplePlayer;
 import model.interfaces.GameEngine;
@@ -23,14 +23,13 @@ public class Client
 
 	public static void main(String args[])
 	{
-		new AppFrame();
 		final GameEngine gameEngine = new GameEngineImpl();
 
 		// create two test players
 		Player[] players = new Player[]
 		{ new SimplePlayer("1", "The Shark", 1000), new SimplePlayer("2", "The Loser", 500) };
 
-		gameEngine.addGameEngineCallback(new GameEngineCallbackImpl());
+		gameEngine.addGameEngineCallback(new ConsoleGameEngineCallbackImpl());
 
 		Deque<PlayingCard> shuffledDeck = gameEngine.getShuffledDeck();
 		printCards(shuffledDeck);

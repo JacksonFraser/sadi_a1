@@ -8,16 +8,19 @@ import javax.swing.JOptionPane;
 import model.GameEngineImpl;
 import model.SimplePlayer;
 import model.interfaces.GameEngine;
+import view.AppFrame;
 import view.CreatePlayerFrame;
 import view.GUIClient;
 
 public class AddPlayerController implements ActionListener {
 	private CreatePlayerFrame cpf;
 	private SimplePlayer player;
+	private AppFrame appFrame;
 
 	public AddPlayerController(CreatePlayerFrame cpf) {
 		this.cpf = cpf;
 		this.player = player;
+		this.appFrame = cpf.getAppFrame();
 	}
 
 	@Override
@@ -26,6 +29,7 @@ public class AddPlayerController implements ActionListener {
 			JOptionPane.showMessageDialog(cpf, "Please enter a valid name");
 		} else {
 			setPlayer(new SimplePlayer("1", cpf.getName(), cpf.getPoints()));
+			appFrame.setPlayer(player);
 			cpf.dispose();
 		}
 	}

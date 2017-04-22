@@ -17,8 +17,9 @@ public class CreatePlayerFrame extends JFrame {
 	private JComboBox<Integer> cBox;
 	private JPanel panel;
 	private JTextField name;
+	private AppFrame appFrame;
 
-	public CreatePlayerFrame() {
+	public CreatePlayerFrame(AppFrame appframe) {
 		super("Create Player");
 		setLayout(new BorderLayout());
 		setBounds(200, 150, 400, 200);
@@ -26,6 +27,7 @@ public class CreatePlayerFrame extends JFrame {
 		panel = new JPanel();
 		panel.setLayout(null);
 		setContentPane(panel);
+		this.setAppFrame(appframe);
 
 		JLabel pName = new JLabel("Player Name");
 		pName.setBounds(10, 10, 150, 25);
@@ -63,6 +65,16 @@ public class CreatePlayerFrame extends JFrame {
 	public int getPoints() {
 		int points = Integer.parseInt(cBox.getSelectedItem().toString());
 		return points;
+	}
+
+
+	public AppFrame getAppFrame() {
+		return appFrame;
+	}
+
+
+	public void setAppFrame(AppFrame appFrame) {
+		this.appFrame = appFrame;
 	}
 
 }
