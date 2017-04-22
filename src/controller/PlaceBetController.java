@@ -53,7 +53,6 @@ public class PlaceBetController implements ActionListener {
 					d.dispose();
 				} else {
 					int betInt = Integer.parseInt(bet.getText());
-					System.out.println(betInt);
 					if (appFrame.getPlayer() == null) {
 						JOptionPane.showMessageDialog(appFrame, "Please Create Player");
 						d.dispose();
