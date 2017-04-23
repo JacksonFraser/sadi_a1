@@ -30,6 +30,7 @@ public class AddPlayerController implements ActionListener {
 		} else {
 			appFrame.setPlayer(new SimplePlayer("1", cpf.getName(), cpf.getPoints()));
 			appFrame.getEditorPanel().AddToTextArea("New Player '"+appFrame.getPlayer().getPlayerName()+"' has been added");
+			appFrame.getGameEngine().addPlayer(appFrame.getPlayer());
 			cpf.dispose();
 		}
 	}

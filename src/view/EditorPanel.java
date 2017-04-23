@@ -11,7 +11,7 @@ import model.EditorModel;
 public class EditorPanel extends JPanel {
 	
 	private EditorModel model;
-	private JTextArea textArea = new JTextArea("Waiting for game to begin...");
+	private JTextArea textArea = new JTextArea("");
 	public EditorPanel(){
 		setLayout(new BorderLayout());
 		add(new JScrollPane(textArea), BorderLayout.CENTER);
@@ -20,7 +20,7 @@ public class EditorPanel extends JPanel {
 		return model;
 	}
 	public void AddToTextArea(String message){
-		textArea.append("\n"+message);
+		textArea.append(message+"\n");
 	}
 
 }

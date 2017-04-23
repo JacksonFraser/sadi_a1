@@ -28,11 +28,15 @@ public class DealController implements ActionListener {
 		else if (appFrame.getPlayer().getPoints() < appFrame.getPlayer().getBet()) {
 			appFrame.displayErrorMessage("Not Enough Points");
 		} else {
-			appFrame.getGameEngine().addGameEngineCallback(new GUIGameEngineCallbackImpl(appFrame));
-			appFrame.getPlayer().placeBet(appFrame.getBet());
-			appFrame.getGameEngine().addPlayer(appFrame.getPlayer());
-			appFrame.getGameEngine().dealPlayer(appFrame.getPlayer(), 1000);
-			appFrame.getGameEngine().calculateResult();
+			new Thread(){
+				public void run(){
+					appFrame.getPlayer().placeBet(appFrame.getBet());
+					appFrame.getGameEngine().dealPlayer(appFrame.getPlayer(), 1000);
+					appFrame.getGameEngine().calculateResult();
+					
+				}
+			}.start();
+			appFrame.getEditorPanel().AddToTextArea("Starting Game...\n");
 		}
 	}
 
