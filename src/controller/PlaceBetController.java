@@ -54,13 +54,14 @@ public class PlaceBetController implements ActionListener {
 				} else {
 					int betInt = Integer.parseInt(bet.getText());
 					if (appFrame.getPlayer() == null) {
-						JOptionPane.showMessageDialog(appFrame, "Please Create Player");
+						appFrame.displayErrorMessage("Please Create Player Before Placing Bet");
 						d.dispose();
 					} else if (betInt < 10 || betInt > appFrame.getPlayer().getPoints()) {
-						JOptionPane.showMessageDialog(appFrame, "Invalid Bet Amount");
+						appFrame.displayErrorMessage("Invalid Bet Amount");
 						d.dispose();
 					} else {
-						appFrame.getPlayer().placeBet(betInt);
+						appFrame.setBet(betInt);
+						appFrame.getEditorPanel().AddToTextArea("Bet amount has been set to "+betInt);
 						d.dispose();
 					}
 				}

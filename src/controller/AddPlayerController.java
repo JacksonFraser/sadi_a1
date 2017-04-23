@@ -26,21 +26,13 @@ public class AddPlayerController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (cpf.getName().equals("") || cpf.getName().length() > 15) {
-			JOptionPane.showMessageDialog(cpf, "Please enter a valid name");
+			cpf.displayErrorMessage("Invalid Name Input");
 		} else {
-			setPlayer(new SimplePlayer("1", cpf.getName(), cpf.getPoints()));
-			appFrame.setPlayer(player);
+			appFrame.setPlayer(new SimplePlayer("1", cpf.getName(), cpf.getPoints()));
+			appFrame.getEditorPanel().AddToTextArea("New Player '"+appFrame.getPlayer().getPlayerName()+"' has been added");
 			cpf.dispose();
 		}
 	}
 
-	public SimplePlayer getPlayer() {
-		return player;
-	}
-
-	public void setPlayer(SimplePlayer player) {
-		this.player = player;
-	}
-	
 
 }

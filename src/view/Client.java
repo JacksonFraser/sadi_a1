@@ -39,7 +39,7 @@ public class Client
 		{
 			player.placeBet(100);
 			gameEngine.addPlayer(player);
-			gameEngine.dealPlayer(player, 10);
+			gameEngine.dealPlayer(player, 1000000);
 		}
 
 		// all players have played so now house deals (GameEngineCallBack is

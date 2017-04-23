@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -57,7 +58,6 @@ public class CreatePlayerFrame extends JFrame {
 		setVisible(true);
 	}
 
-
 	public String getName() {
 		return this.name.getText();
 	}
@@ -67,14 +67,16 @@ public class CreatePlayerFrame extends JFrame {
 		return points;
 	}
 
-
 	public AppFrame getAppFrame() {
 		return appFrame;
 	}
 
-
 	public void setAppFrame(AppFrame appFrame) {
 		this.appFrame = appFrame;
+	}
+
+	public void displayErrorMessage(String message) {
+		JOptionPane.showMessageDialog(this, message);
 	}
 
 }

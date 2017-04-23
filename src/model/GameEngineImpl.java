@@ -25,10 +25,13 @@ public class GameEngineImpl implements GameEngine {
 		int handTotal = 0;
 		PlayingCard card;
 		while (handTotal < BUST_LEVEL) {
+			if(deck.size() == 0)
+				deck = getShuffledDeck();
 			card = deck.pop();
-
-			if (handTotal + card.getScore() <= BUST_LEVEL) {
-				player.setResult(handTotal + card.getScore());
+			
+			if (handTotal + card.getScore() >= BUST_LEVEL) {
+				player.setResult(handTotal);
+				gec.bustCard(player, card, this);
 			}
 			handTotal += card.getScore();
 			gec.nextCard(player, card, this);
@@ -42,9 +45,13 @@ public class GameEngineImpl implements GameEngine {
 		PlayingCard card;
 
 		while (handTotal < BUST_LEVEL) {
+			if(deck.size() == 0)
+				deck = getShuffledDeck();
 			card = deck.pop();
-			if (handTotal + card.getScore() <= BUST_LEVEL)
-				dealerResult = handTotal + card.getScore();
+			if (handTotal + card.getScore() > BUST_LEVEL){
+				dealerResult = handTotal;
+				gec.houseBustCard(card, this);
+			}
 			handTotal += card.getScore();
 			gec.nextHouseCard(card, this);
 		}
@@ -84,10 +91,21 @@ public class GameEngineImpl implements GameEngine {
 		dealHouse(10);
 		for (Player player : playerList) {
 			if (player.getResult() > dealerResult) {
+				System.out.println();
+				System.out.print(player.getPlayerName()+" has won, points were "+player.getPoints());
 				player.setPoints(player.getPoints() + player.getBet() * 2);
+				System.out.print(" and are now "+player.getPoints()+"\n");
+				System.out.println();
 			} else if (player.getResult() == dealerResult) {
+				System.out.println();
+				System.out.print(player.getPlayerName()+" has drawn with house, points were "+player.getPoints());
 				player.setPoints(player.getPoints() + player.getBet());
+				System.out.print(" and are now "+player.getPoints()+"\n");
+				System.out.println();
 			} else {
+				System.out.println();
+				System.out.println(player.getPlayerName()+" has lost, points are now "+player.getPoints());
+				System.out.println();
 			}
 		}
 

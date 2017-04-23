@@ -10,8 +10,12 @@ import controller.PlaceBetController;
 
 public class ToolBar extends JToolBar {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JButton startButton = new JButton("Start Game!");
-	private JButton betButton = new JButton("Place Bet");
+	private JButton betButton = new JButton("Set Bet Amount");
 	private JButton addPlayerButton = new JButton("Add Player");
 	private AppFrame appFrame;
 	

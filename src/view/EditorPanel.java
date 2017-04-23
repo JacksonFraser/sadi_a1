@@ -11,12 +11,16 @@ import model.EditorModel;
 public class EditorPanel extends JPanel {
 	
 	private EditorModel model;
-	private JTextArea textArea = new JTextArea("");
-	public EditorPanel(EditorModel model){
-		this.model = model;
-		textArea.setText(model.getDocument());
+	private JTextArea textArea = new JTextArea("Waiting for game to begin...");
+	public EditorPanel(){
 		setLayout(new BorderLayout());
 		add(new JScrollPane(textArea), BorderLayout.CENTER);
+	}
+	public EditorModel getEditorModel(){
+		return model;
+	}
+	public void AddToTextArea(String message){
+		textArea.append("\n"+message);
 	}
 
 }
