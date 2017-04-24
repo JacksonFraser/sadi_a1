@@ -22,14 +22,15 @@ public class AddPlayerController implements ActionListener {
 		this.player = player;
 		this.appFrame = cpf.getAppFrame();
 	}
-
+	
+	//Creates the player from the values in the CreatePlayerFrame
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (cpf.getName().equals("") || cpf.getName().length() > 15) {
 			cpf.displayErrorMessage("Invalid Name Input");
 		} else {
 			appFrame.setPlayer(new SimplePlayer("1", cpf.getName(), cpf.getPoints()));
-			appFrame.getEditorPanel().AddToTextArea("New Player '"+appFrame.getPlayer().getPlayerName()+"' has been added");
+			appFrame.getEditorPanel().addToTextArea("New Player '"+appFrame.getPlayer().getPlayerName()+"' has been added");
 			appFrame.getGameEngine().addPlayer(appFrame.getPlayer());
 			cpf.dispose();
 		}

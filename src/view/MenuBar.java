@@ -9,7 +9,7 @@ import menuBarController.ExitItemController;
 
 public class MenuBar extends JMenuBar {
 	/**
-	 * 
+	 * Simple menu for displaying "About" and "Exit" options
 	 */
 	private static final long serialVersionUID = 1L;
 	private JMenu fileMenu = new JMenu("File");

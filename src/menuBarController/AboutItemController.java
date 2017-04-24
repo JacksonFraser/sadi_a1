@@ -11,7 +11,8 @@ import view.AboutFrame;
 
 public class AboutItemController implements ActionListener {
 
-
+	
+	//Creates a frame with some details in it
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		AboutFrame aFrame = new AboutFrame();

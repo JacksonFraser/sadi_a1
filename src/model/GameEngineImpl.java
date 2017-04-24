@@ -20,16 +20,15 @@ public class GameEngineImpl implements GameEngine {
 	private List<Player> playerList = new ArrayList<>();
 	private Deque<PlayingCard> deck = getShuffledDeck();
 	private int dealerResult = 0;
-	private GameEngineCallback gec;
+	private GUIGameEngineCallbackImpl gec;
 
 	@Override
 	public void dealPlayer(Player player, int delay) {
 		int handTotal = 0;
 		PlayingCard card;
-		while (handTotal < BUST_LEVEL) {
+		while (handTotal <= BUST_LEVEL) {
 			try {
-	            // thread to sleep for 1000 milliseconds
-	            Thread.sleep(1000);
+	            Thread.sleep(delay);
 	         } catch (Exception e) {
 	            System.out.println(e);
 	         }
@@ -54,10 +53,9 @@ public class GameEngineImpl implements GameEngine {
 		int handTotal = 0, result = 0;
 		PlayingCard card;
 
-		while (handTotal < BUST_LEVEL) {
+		while (handTotal <= BUST_LEVEL) {
 			try {
-	            // thread to sleep for 1000 milliseconds
-	            Thread.sleep(1000);
+	            Thread.sleep(delay);
 	         } catch (Exception e) {
 	            System.out.println(e);
 	         }
@@ -106,24 +104,19 @@ public class GameEngineImpl implements GameEngine {
 
 	@Override
 	public void calculateResult() {
-		dealHouse(10);
+		dealHouse(1000);
 		for (Player player : playerList) {
+			//If player wins
 			if (player.getResult() > dealerResult) {
-				System.out.println();
-				System.out.print(player.getPlayerName() + " has won, points were " + player.getPoints());
 				player.setPoints(player.getPoints() + player.getBet() * 2);
-				System.out.print(" and are now " + player.getPoints() + "\n");
-				System.out.println();
+				gec.endRoundPointsUpdate(player, "WON");
+				//If it is a draw
 			} else if (player.getResult() == dealerResult) {
-				System.out.println();
-				System.out.print(player.getPlayerName() + " has drawn with house, points were " + player.getPoints());
 				player.setPoints(player.getPoints() + player.getBet());
-				System.out.print(" and are now " + player.getPoints() + "\n");
-				System.out.println();
+				gec.endRoundPointsUpdate(player, "DRAWN");
 			} else {
-				System.out.println();
-				System.out.println(player.getPlayerName() + " has lost");
-				System.out.println();
+				gec.endRoundPointsUpdate(player, "LOST");
+				//if player loses do nothing
 			}
 		}
 
@@ -131,7 +124,7 @@ public class GameEngineImpl implements GameEngine {
 
 	@Override
 	public void addGameEngineCallback(GameEngineCallback gameEngineCallBack) {
-		gec = gameEngineCallBack;
+		gec = (GUIGameEngineCallbackImpl) gameEngineCallBack;
 	}
 
 	@Override

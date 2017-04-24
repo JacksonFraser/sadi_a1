@@ -21,22 +21,28 @@ public class DealController implements ActionListener {
 		this.appFrame = appFrame;
 	}
 
+	// Starts a round as long as certain conditions are met
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if (appFrame.getPlayer() == null)
 			appFrame.displayErrorMessage("Please Create Player Before Starting Game");
 		else if (appFrame.getPlayer().getPoints() < appFrame.getPlayer().getBet()) {
 			appFrame.displayErrorMessage("Not Enough Points");
+
+		} else if (appFrame.getBet() == 0) {
+			appFrame.displayErrorMessage("Please Set A Bet Amount Before Starting Game");
 		} else {
-			new Thread(){
-				public void run(){
+			appFrame.getEditorPanel().addToTextArea("Starting Game...\n");
+
+			// Creates a new thread so delay functions properly
+			new Thread() {
+				public void run() {
 					appFrame.getPlayer().placeBet(appFrame.getBet());
 					appFrame.getGameEngine().dealPlayer(appFrame.getPlayer(), 1000);
 					appFrame.getGameEngine().calculateResult();
-					
+
 				}
 			}.start();
-			appFrame.getEditorPanel().AddToTextArea("Starting Game...\n");
 		}
 	}
 

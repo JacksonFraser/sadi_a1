@@ -12,7 +12,7 @@ import model.interfaces.GameEngine;
 
 public class AppFrame extends JFrame {
 	/**
-	 * 
+	 * Main program frame
 	 */
 	private static final long serialVersionUID = 1L;
 	private MenuBar menuBar = new MenuBar();

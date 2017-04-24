@@ -17,7 +17,7 @@ public class AddPlayerFrameController implements ActionListener {
 	}
 
 
-
+	//Creates a new frame for entering a player's name and points
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		CreatePlayerFrame cpf = new CreatePlayerFrame(this.appframe);

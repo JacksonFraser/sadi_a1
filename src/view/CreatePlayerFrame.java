@@ -8,13 +8,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import controller.AddPlayerController;
 
 public class CreatePlayerFrame extends JFrame {
 
+	/**
+	 * Frame used to add player
+	 */
+	private static final long serialVersionUID = 1L;
 	private JComboBox<Integer> cBox;
 	private JPanel panel;
 	private JTextField name;

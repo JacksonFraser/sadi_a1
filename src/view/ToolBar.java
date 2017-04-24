@@ -11,7 +11,7 @@ import controller.PlaceBetController;
 public class ToolBar extends JToolBar {
 
 	/**
-	 * 
+	 * Used to create buttons to implement program functionality
 	 */
 	private static final long serialVersionUID = 1L;
 	private JButton startButton = new JButton("Start Game!");

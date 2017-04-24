@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 public class ExitItemController implements ActionListener {
 
+	//Terminates the program
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.exit(0);

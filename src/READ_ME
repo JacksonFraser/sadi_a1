@@ -1,0 +1,8 @@
+To run the program please do the following:
+
+1. Run GUIClient
+2. Create a player 
+3. Set a bet amount. The bet amount must be at least 10 and less than the amount of points you gave your player
+4. Click on start game and hope you win :D
+5. Feel free to terminate the program by clicking on File -> exit
+

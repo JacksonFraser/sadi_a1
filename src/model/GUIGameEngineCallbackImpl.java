@@ -16,36 +16,41 @@ public class GUIGameEngineCallbackImpl implements GameEngineCallback {
 	@Override
 	public void nextCard(Player player, PlayingCard card, GameEngine engine) {
 		appFrame.getEditorPanel()
-				.AddToTextArea(player.getPlayerName() + "'s next card is " + card.getValue() + " of " + card.getSuit());
+				.addToTextArea(player.getPlayerName() + "'s next card is " + card.getValue() + " of " + card.getSuit());
 	}
 
 	@Override
 	public void bustCard(Player player, PlayingCard card, GameEngine engine) {
-		appFrame.getEditorPanel().AddToTextArea(
+		appFrame.getEditorPanel().addToTextArea(
 				player.getPlayerName() + " has busted with card " + card.getValue() + " of " + card.getSuit());
 
 	}
 
 	@Override
 	public void result(Player player, int result, GameEngine engine) {
-		appFrame.getEditorPanel().AddToTextArea("\n" + player.getPlayerName() + "'s hand is worth " + result + "\n");
+		appFrame.getEditorPanel().addToTextArea("\n" + player.getPlayerName() + "'s hand is worth " + result + "\n");
 	}
 
 	@Override
 	public void nextHouseCard(PlayingCard card, GameEngine engine) {
-		appFrame.getEditorPanel().AddToTextArea("Houses' next card is " + card.getValue() + " of " + card.getSuit());
+		appFrame.getEditorPanel().addToTextArea("Houses' next card is " + card.getValue() + " of " + card.getSuit());
 	}
 
 	@Override
 	public void houseBustCard(PlayingCard card, GameEngine engine) {
 		appFrame.getEditorPanel()
-				.AddToTextArea("House has busted with card " + card.getValue() + " of " + card.getSuit());
+				.addToTextArea("House has busted with card " + card.getValue() + " of " + card.getSuit());
 
 	}
 
 	@Override
 	public void houseResult(int result, GameEngine engine) {
-		appFrame.getEditorPanel().AddToTextArea("\n Houses' hand is worth " + result + "\n");
+		appFrame.getEditorPanel().addToTextArea("\n Houses' hand is worth " + result + "\n");
+	}
+
+	public void endRoundPointsUpdate(Player player, String roundOutcome ){
+		appFrame.getEditorPanel().addToTextArea(player.getPlayerName()+" has "+roundOutcome+" Current points: "+player.getPoints()+"\n");
+		
 	}
 
 }

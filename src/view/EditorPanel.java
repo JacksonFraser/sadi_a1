@@ -10,6 +10,10 @@ import model.EditorModel;
 
 public class EditorPanel extends JPanel {
 	
+	/**
+	 * JPanel attatched to AppFrame that displays all game data
+	 */
+	private static final long serialVersionUID = 1L;
 	private EditorModel model;
 	private JTextArea textArea = new JTextArea("");
 	public EditorPanel(){
@@ -19,7 +23,7 @@ public class EditorPanel extends JPanel {
 	public EditorModel getEditorModel(){
 		return model;
 	}
-	public void AddToTextArea(String message){
+	public void addToTextArea(String message){
 		textArea.append(message+"\n");
 	}
 

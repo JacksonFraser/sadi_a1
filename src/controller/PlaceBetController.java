@@ -24,6 +24,7 @@ public class PlaceBetController implements ActionListener {
 		this.appFrame = appFrame;
 	}
 
+	//Creates a new frame for placing a bet
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JFrame d = new JFrame();
@@ -47,9 +48,11 @@ public class PlaceBetController implements ActionListener {
 		panel.add(createBtn);
 		d.setVisible(true);
 		createBtn.addActionListener(new ActionListener() {
+			
+			//Sets the bet amount as long as certain conditions are met
 			public void actionPerformed(ActionEvent e) {
 				if (!parseBet(bet)) {
-					JOptionPane.showMessageDialog(appFrame, "Invalid Bet Input");
+					appFrame.displayErrorMessage("Invalid Bet Input");
 					d.dispose();
 				} else {
 					int betInt = Integer.parseInt(bet.getText());
@@ -61,7 +64,7 @@ public class PlaceBetController implements ActionListener {
 						d.dispose();
 					} else {
 						appFrame.setBet(betInt);
-						appFrame.getEditorPanel().AddToTextArea("Bet amount has been set to "+betInt);
+						appFrame.getEditorPanel().addToTextArea("Bet amount has been set to "+betInt);
 						d.dispose();
 					}
 				}
