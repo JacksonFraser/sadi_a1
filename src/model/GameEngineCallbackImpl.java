@@ -6,10 +6,10 @@ import model.interfaces.Player;
 import model.interfaces.PlayingCard;
 import view.AppFrame;
 
-public class GUIGameEngineCallbackImpl implements GameEngineCallback {
+public class GameEngineCallbackImpl implements GameEngineCallback {
 	private AppFrame appFrame;
 
-	public GUIGameEngineCallbackImpl(AppFrame appFrame) {
+	public GameEngineCallbackImpl(AppFrame appFrame) {
 		this.appFrame = appFrame;
 	}
 
@@ -46,11 +46,21 @@ public class GUIGameEngineCallbackImpl implements GameEngineCallback {
 	@Override
 	public void houseResult(int result, GameEngine engine) {
 		appFrame.getEditorPanel().addToTextArea("\n Houses' hand is worth " + result + "\n");
+		int points = appFrame.getPlayer().getPoints();
+		if(appFrame.getPlayer().getResult() > result){
+			appFrame.getEditorPanel().addToTextArea(appFrame.getPlayer().getPlayerName()+
+					" has WON Points are now "+(points+appFrame.getBet()*2));
+		
+		}
+		else if(appFrame.getPlayer().getResult() < result){
+			appFrame.getEditorPanel().addToTextArea(appFrame.getPlayer().getPlayerName()+
+					" has LOST Points are now "+(appFrame.getPlayer().getPoints()));
+		}
+		else{
+			appFrame.getEditorPanel().addToTextArea(appFrame.getPlayer().getPlayerName()+
+					" has DRAWN Points are now "+(points+appFrame.getBet()));
+		}
 	}
 
-	public void endRoundPointsUpdate(Player player, String roundOutcome ){
-		appFrame.getEditorPanel().addToTextArea(player.getPlayerName()+" has "+roundOutcome+" Current points: "+player.getPoints()+"\n");
-		
-	}
 
 }

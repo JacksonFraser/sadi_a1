@@ -7,7 +7,7 @@ import java.util.Deque;
 import javax.swing.JOptionPane;
 
 import model.ConsoleGameEngineCallbackImpl;
-import model.GUIGameEngineCallbackImpl;
+import model.GameEngineCallbackImpl;
 import model.interfaces.PlayingCard;
 import view.AppFrame;
 import view.EditorPanel;
@@ -38,9 +38,9 @@ public class DealController implements ActionListener {
 			new Thread() {
 				public void run() {
 					appFrame.getPlayer().placeBet(appFrame.getBet());
-					appFrame.getGameEngine().dealPlayer(appFrame.getPlayer(), 1000);
+					appFrame.getGameEngine().dealPlayer(appFrame.getPlayer(), 1);
 					appFrame.getGameEngine().calculateResult();
-
+					
 				}
 			}.start();
 		}

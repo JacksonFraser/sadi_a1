@@ -20,18 +20,14 @@ public class GameEngineImpl implements GameEngine {
 	private List<Player> playerList = new ArrayList<>();
 	private Deque<PlayingCard> deck = getShuffledDeck();
 	private int dealerResult = 0;
-	private GUIGameEngineCallbackImpl gec;
+	private GameEngineCallback gec;
 
 	@Override
 	public void dealPlayer(Player player, int delay) {
 		int handTotal = 0;
 		PlayingCard card;
 		while (handTotal <= BUST_LEVEL) {
-			try {
-	            Thread.sleep(delay);
-	         } catch (Exception e) {
-	            System.out.println(e);
-	         }
+			delay(delay);
 			if (deck.size() == 0)
 				deck = getShuffledDeck();
 			card = deck.pop();
@@ -54,11 +50,7 @@ public class GameEngineImpl implements GameEngine {
 		PlayingCard card;
 
 		while (handTotal <= BUST_LEVEL) {
-			try {
-	            Thread.sleep(delay);
-	         } catch (Exception e) {
-	            System.out.println(e);
-	         }
+			delay(delay);
 			if (deck.size() == 0)
 				deck = getShuffledDeck();
 			card = deck.pop();
@@ -104,18 +96,15 @@ public class GameEngineImpl implements GameEngine {
 
 	@Override
 	public void calculateResult() {
-		dealHouse(1000);
+		dealHouse(1);
 		for (Player player : playerList) {
 			//If player wins
 			if (player.getResult() > dealerResult) {
 				player.setPoints(player.getPoints() + player.getBet() * 2);
-				gec.endRoundPointsUpdate(player, "WON");
 				//If it is a draw
 			} else if (player.getResult() == dealerResult) {
 				player.setPoints(player.getPoints() + player.getBet());
-				gec.endRoundPointsUpdate(player, "DRAWN");
 			} else {
-				gec.endRoundPointsUpdate(player, "LOST");
 				//if player loses do nothing
 			}
 		}
@@ -124,7 +113,7 @@ public class GameEngineImpl implements GameEngine {
 
 	@Override
 	public void addGameEngineCallback(GameEngineCallback gameEngineCallBack) {
-		gec = (GUIGameEngineCallbackImpl) gameEngineCallBack;
+		gec = gameEngineCallBack;
 	}
 
 	@Override
@@ -161,6 +150,13 @@ public class GameEngineImpl implements GameEngine {
 		deck = new ArrayDeque<>(cardsList);
 
 		return deck;
+	}
+	public void delay(int delay){
+		try {
+            Thread.sleep(delay);
+         } catch (InterruptedException e) {
+            e.printStackTrace();
+         }
 	}
 
 }
