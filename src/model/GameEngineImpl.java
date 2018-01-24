@@ -29,6 +29,7 @@ public class GameEngineImpl implements GameEngine {
 		while (handTotal <= BUST_LEVEL) {
 			delay(delay);
 			if (deck.size() == 0)
+				//get a new shuffled deck
 				deck = getShuffledDeck();
 			card = deck.pop();
 
